@@ -1,4 +1,4 @@
-FROM node:dubnium
+FROM node:dubnium-alpine
 
 # Create app directory
 WORKDIR /usr/src/app
