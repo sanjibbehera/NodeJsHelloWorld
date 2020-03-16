@@ -4,9 +4,9 @@ const mariadb = require('mariadb');
 const port = 3299
 
 const pool = mariadb.createPool({
-     host: 'mydb.com', 
-     user:'myUser', 
-     password: 'myPassword',
+     host: '192.168.7.22', 
+     user:'testuser', 
+     password: 'testpass',
      connectionLimit: 5
 });
 async function asyncFunction() {
