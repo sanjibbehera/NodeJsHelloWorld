@@ -1,18 +1,10 @@
-FROM node:dubnium-alpine
-
-# Create app directory
-WORKDIR /usr/src/app
-
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
+FROM node
+WORKDIR /opt/node_app
 COPY package*.json ./
-
-RUN npm install
-# If you are building your code for production
-# RUN npm install --only=production
-
-# Bundle app source
+RUN npm install --no-optional && npm cache clean --force
+ENV PATH /opt/node_app/node_modules/.bin:$PATH
+WORKDIR /opt/node_app/app
 COPY . .
+EXPOSE 3299
 
-EXPOSE 7878
-CMD [ "npm", "start" ]
+CMD npm start
