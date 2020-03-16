@@ -13,7 +13,7 @@ async function asyncFunction() {
   let conn;
   try {
 	conn = await pool.getConnection();
-	const rows = await conn.query("SELECT 1 as val");
+	const rows = await conn.query("SELECT id from test.temp");
 	console.log(rows); //[ {val: 1}, meta: ... ]
   } catch (err) {
 	throw err;
