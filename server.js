@@ -1,27 +1,32 @@
-const express = require('express')
-const app = express()
-const mariadb = require('mariadb');
+var express    = require("express");
+var mysql      = require('mysql');
+
+var connection = mysql.createConnection({
+  host     : process.env.HOST,
+  user     : process.env.USERNAME,
+  password : process.env.PASSWORD,
+  database : process.env.DATABASE
+});
+var app = express();
 const port = 3299
 
-const pool = mariadb.createPool({
-     host: '192.168.7.22', 
-     user:'testuser', 
-     password: 'testpass',
-     connectionLimit: 5
-});
-async function asyncFunction() {
-  let conn;
-  try {
-	conn = await pool.getConnection();
-	const rows = await conn.query("SELECT id from test.temp");
-	console.log(rows); //[ {val: 1}, meta: ... ]
-  } catch (err) {
-	throw err;
-  } finally {
-	if (conn) return conn.end();
-  }
+connection.connect(function(err){
+if(!err) {
+    console.log("Database is connected ... nn");    
+} else {
+    console.log("Error connecting database ... nn");    
 }
+});
 
-app.get('/', (req, res) => res.send('Hello World FROM SANJIB BEHERA LAXMI CHOWK HINJEWADI PUNE!'))
+app.get("/fetchrows",function(req,res){
+connection.query('SELECT id from temp LIMIT 2', function(err, rows, fields) {
+connection.end();
+  if (!err)
+    console.log('The solution is: ', rows);
+  else
+    console.log('Error while performing Query.');
+  });
+});
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.get('/', (req, res) => res.send('Hello World FROM SANJIB BEHERA LAXMI CHOWK HINJEWADI PUNE!'));
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
