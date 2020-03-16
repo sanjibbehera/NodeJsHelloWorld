@@ -2,7 +2,7 @@
   "name": "NodeJsHelloWorld",
   "version": "1.0.0",
   "description": "HelloWorld Nodejs program to use in Jenkins Pipeline Job",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,6 +19,6 @@
   "homepage": "https://github.com/sanjibbehera/NodeJsHelloWorld#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "mariadb": "^2.2.0"
+    "mysql": "^2.18.1"
   }
 }
