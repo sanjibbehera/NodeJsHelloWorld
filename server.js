@@ -22,11 +22,11 @@ app.get("/fetchrows",function(req,res){
 connection.query('SELECT id from temp LIMIT 2', function(err, rows, fields) {
 connection.end();
   if (!err)
-    console.log('The solution is: ', rows);
+    console.log('The rows inside the table is: ', rows);
   else
     console.log('Error while performing Query.');
   });
 });
 
-app.get('/', (req, res) => res.send('Hello World FROM SANJIB BEHERA, LAXMI CHOWK HINJEWADI PUNE 411057 MAHARASTRA !!'));
+app.get('/', (req, res) => res.send('Hello World FROM SANJIB BEHERA, TESTING 123, LAXMI CHOWK HINJEWADI PUNE 411057 MAHARASTRA !!'));
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
